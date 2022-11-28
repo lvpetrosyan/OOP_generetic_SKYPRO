@@ -1,26 +1,26 @@
 import java.util.Objects;
 
-public class Driver < B extends Car & Competing> {
+public class DriverC < C extends Trucks & Competing>{
     private String name;
     private boolean skill;
     private int experience;
 
 
-    public Driver(String name, boolean skill, int experience) {
+    public DriverC(String name, boolean skill, int experience) {
         if (name == null || name.isEmpty() || name.isBlank()) {
             this.name = "Anonim";
         } else {
             this.name = name;}
         this.skill = skill;
         if (experience <= 0) {
-            this.experience = 5;
+            this.experience = 7;
         } else {
             this.experience = experience;
         }
     }
 
-    public Driver(String name) {
-        this(name, true,5);
+    public DriverC(String name) {
+        this(name, true,7);
     }
 
     public boolean isSkill() {
@@ -55,7 +55,7 @@ public class Driver < B extends Car & Competing> {
     }
 
     public static void startMoving(){
-        System.out.println("Подготавливает машину.");
+        System.out.println("Подготавливает машину грузовой автомобиль.");
         System.out.println("Включает мотор.");
         System.out.println("Едет.");
     }
@@ -66,8 +66,8 @@ public class Driver < B extends Car & Competing> {
     public static void fillCar(){
         System.out.println("Приезжает на заправку.");
         System.out.println("Заправляет дизелем или бензином.");
-        System.out.println("Заряжает на специальных электроду-парковках.");
     }
+
     @Override
     public String toString() {
         return "Водитель "  + getName() + " будет управлять автомобилем ";
@@ -77,8 +77,8 @@ public class Driver < B extends Car & Competing> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Driver<?> driver = (Driver<?>) o;
-        return skill == driver.skill && experience == driver.experience && Objects.equals(name, driver.name);
+        DriverC<?> driverC = (DriverC<?>) o;
+        return skill == driverC.skill && experience == driverC.experience && Objects.equals(name, driverC.name);
     }
 
     @Override
@@ -86,3 +86,4 @@ public class Driver < B extends Car & Competing> {
         return Objects.hash(name, skill, experience);
     }
 }
+

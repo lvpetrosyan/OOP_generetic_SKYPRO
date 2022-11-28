@@ -1,18 +1,24 @@
 import java.util.Arrays;
 
-public class Car extends Transport implements Competing{
-    public Car [] raseCar;
+public class Car extends Transport implements Competing {
     private int maxSpeed;
-    public Car(String marks, String model, double engineVolume,double  endTime, double startTime, int maxSpeed) {
-        super(marks, model, engineVolume,   endTime, startTime);
+    private static int counter = 1;
+    private int id;
+
+    public Car(String marks, String model, double engineVolume, double startTime, double endTime, int maxSpeed) {
+        super(marks, model, engineVolume, startTime, endTime);
         if (maxSpeed <= 0) {
             this.maxSpeed = 180;
         } else {
             this.maxSpeed = maxSpeed;
         }
+        id = counter++;
     }
-    public Car(String marks, String model){
-        this(marks, model,1.8,5,1.5,180);}
+
+    public Car(String marks, String model) {
+        this(marks, model, 1.8, 5, 1.5, 180);
+        id = counter++;
+    }
 
     public int getMaxSpeed() {
         return maxSpeed;
@@ -26,15 +32,19 @@ public class Car extends Transport implements Competing{
         }
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public void goStart() {
-        System.out.println("Машина стартовала за "+getStartTime()+" с.");
+        System.out.println("Машина стартовала за " + getStartTime() + " с.");
 
     }
 
     @Override
     public void goEnd() {
-        System.out.println("Машина пришла к финишу за "+getEndTime()+" мин.");
+        System.out.println("Машина пришла к финишу за " + getEndTime() + " мин.");
 
     }
 
@@ -43,46 +53,27 @@ public class Car extends Transport implements Competing{
         System.out.println("Пит-стоп на 2 круге.");
 
     }
-    public  Car[] addRaseCar() {
-        if (raseCar==null){
-            raseCar= new Car[0];
-        }
-        return raseCar;
-    }
-    public void addCar(Car  raseCars) {
-        Car [] raseCar= new Car[addRaseCar().length+1];
-        this.raseCar= Arrays.copyOf(this.raseCar, addRaseCar().length+1);
-        this.raseCar[this.raseCar.length-1]= raseCars;}
+
 
     @Override
-    public void bestTime (){
-            double min = 90000000;
-            Car carBest=null;
-            for (Car i : raseCar) {
-                if (i == null)
-                    throw new IllegalArgumentException("The argument cannot be null");
-                {
-                    if (i.getEndTime() < min) {
-                        min = i.getEndTime();
-                        carBest=i;
-                    }
-                }
-            }
-        System.out.println("Победитель  " + carBest.getMarks() + " - " + min);
-        }
+    public void bestTime() {
+        System.out.println("Победитель и результат гонки");
+
+    }
 
 
     @Override
     public void goMaxSpeed() {
-        System.out.println("Максимальная скорость - "+maxSpeed);
+        System.out.println("Максимальная скорость - " + maxSpeed);
 
     }
+
     @Override
     public String toString() {
-        return "Траснспорт: " +
-                " марка " + getMarks() +
+        return "Участник " + getId()+
+                ": марка " + getMarks() +
                 ". Модель - " + getModel() +
                 " объем двигателя " + getEngineVolume() +
-                ". Проехал весь маршурт за "+ getEndTime();
+                ". Проехал весь маршурт за " + getEndTime();
     }
 }

@@ -1,15 +1,35 @@
 public class Bus extends Transport implements Competing{
     private int maxSpeed;
-    public Bus(String marks, String model, double engineVolume, double  endTime, double startTime, int maxSpeed) {
-        super(marks, model, engineVolume, endTime, startTime);
+    private static int counter = 1;
+    private int id;
+    public Bus(String marks, String model, double engineVolume,  double startTime, double  endTime, int maxSpeed) {
+        super(marks, model, engineVolume, startTime, endTime);
+        if (maxSpeed <= 0) {
+            this.maxSpeed = 180;
+        } else {
+            this.maxSpeed = maxSpeed;
+        }
+        id=counter++;
+    }
+    public Bus(String marks, String model){
+        this(marks, model,1.8,5,1.5,180);
+        }
+
+    public int getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    public void setMaxSpeed(int maxSpeed) {
         if (maxSpeed <= 0) {
             this.maxSpeed = 180;
         } else {
             this.maxSpeed = maxSpeed;
         }
     }
-    public Bus(String marks, String model){
-        this(marks, model,1.8,5,1.5,180);}
+
+    public int getId() {
+        return id;
+    }
 
     @Override
     public void goStart() {
@@ -31,6 +51,7 @@ public class Bus extends Transport implements Competing{
 
     @Override
     public void bestTime() {
+        System.out.println("Победитель и результат гонки");
 
     }
 
@@ -42,8 +63,8 @@ public class Bus extends Transport implements Competing{
     }
     @Override
     public String toString() {
-        return "Траснспорт: " +
-                " марка " + getMarks() +
+        return "Участник " + getId()+
+                ": марка " + getMarks() +
                 ". Модель - " + getModel() +
                 " объем двигателя " + getEngineVolume() +
                 ". Проехал весь маршурт за "+ getEndTime();
