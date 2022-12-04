@@ -1,19 +1,26 @@
 public class Bus extends Transport implements Competing{
+    private Capacity capacity;
     private int maxSpeed;
     private static int counter = 1;
     private int id;
-    public Bus(String marks, String model, double engineVolume,  double startTime, double  endTime, int maxSpeed) {
+
+    public Bus(String marks, String model, double engineVolume,  double startTime, double  endTime, int maxSpeed, Capacity capacity) {
         super(marks, model, engineVolume, startTime, endTime);
         if (maxSpeed <= 0) {
             this.maxSpeed = 180;
         } else {
             this.maxSpeed = maxSpeed;
         }
+        this.capacity=capacity;
         id=counter++;
     }
-    public Bus(String marks, String model){
-        this(marks, model,1.8,5,1.5,180);
+    public Bus(String marks, String model, Capacity capacity){
+        this(marks, model,1.8,5,1.5,180, capacity);
         }
+
+    public Capacity getCapacity() {
+        return capacity;
+    }
 
     public int getMaxSpeed() {
         return maxSpeed;
@@ -44,6 +51,13 @@ public class Bus extends Transport implements Competing{
     }
 
     @Override
+    public void printtypeMachine() {
+        if (capacity== null){System.out.println("Данных по транспортному средству недостаточно");}
+        else System.out.println("Вместимость "+ capacity.getFrom()+ capacity.getTo());
+
+    }
+
+    @Override
     public void pitStop() {
         System.out.println("Пит-стоп на 1 круге.");
 
@@ -67,6 +81,6 @@ public class Bus extends Transport implements Competing{
                 ": марка " + getMarks() +
                 ". Модель - " + getModel() +
                 " объем двигателя " + getEngineVolume() +
-                ". Проехал весь маршурт за "+ getEndTime();
+                ". Проехал весь маршурт за "+ getEndTime() + " вместимость " ;
     }
 }

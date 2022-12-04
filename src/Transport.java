@@ -79,6 +79,7 @@ public abstract class Transport {
     public abstract void goStart();
 
     public abstract void goEnd();
+    public abstract void printtypeMachine();
 
     @Override
     public String toString() {

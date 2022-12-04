@@ -1,22 +1,22 @@
 public class Main {
     public static void main(String[] args) {
         Car[] raseCar = {
-                new Car("Toyota", "mark II", 1.8, 5.4, 2, 270),
-                new Car("BMW", "x5", 1.5, 5.2, 1.02, 250),
-                new Car("Porshe", "cayene", 2.0, 6, 3.42, 295),
-                new Car("Lada", "2109", 1.3, 5.1, 1.7, 223)};
+                new Car("Toyota", "mark II", 1.8, 5.4, 2, 270, Car.TypeBody.СЕДАН),
+                new Car("BMW", "x5", 1.5, 5.2, 1.02, 250, Car.TypeBody.ВНЕДОРОЖНИК),
+                new Car("Porshe", "cayene", 2.0, 6, 3.42, 295, Car.TypeBody.СЕДАН),
+                new Car("Lada", "2109", 1.3, 5.1, 1.7, 223, Car.TypeBody.СЕДАН)};
 
         Bus[] raseBus = {
-                new Bus("Hyunday1", "a777", 1.7, 5.7, 1.4, 189),
-                new Bus("Hyunday", "2109", 1.3, 7.3, 1.8, 120),
-                new Bus("Daewoo", "odd987"),
-                new Bus("Daewoo", "daa455")};
+                new Bus("Hyunday1", "a777", 1.7, 5.7, 1.4, 189, Capacity.SMALL ),
+                new Bus("Hyunday", "2109", 1.3, 7.3, 1.8, 120, Capacity.SMALL),
+                new Bus("Daewoo", "odd987", Capacity.SMALL),
+                new Bus("Daewoo", "daa455", Capacity.SMALL)};
 
         Trucks[] raseTrucks = {
-                new Trucks("Mercedes-Benz", "daa455", 12, 6.3, 2.8, 189),
-                new Trucks("КАМАЗ", "O405"),
-                new Trucks("ГАЗ", "3307", 11.8, 8.8, 1.2, 199),
-                new Trucks("Ford", "ff566", 12.3, 7.8, 2, 177)};
+                new Trucks("Mercedes-Benz", "daa455", 12, 6.3, 2.8, 189, WeightCargo.N2),
+                new Trucks("КАМАЗ", "O405",WeightCargo.N2),
+                new Trucks("ГАЗ", "3307", 11.8, 8.8, 1.2, 199, WeightCargo.N2),
+                new Trucks("Ford", "ff566", 12.3, 7.8, 2, 177, WeightCargo.N2)};
 
         System.out.println("В гонках принимают участие: \n АВТОБУСЫ");
         System.out.println(raseBus[0].toString());
@@ -54,6 +54,10 @@ public class Main {
         System.out.println("\n Водители: \n "+alex.toString()+raseBus[1].getMarks()+" и будет участвовать в 1 заезде.");
         System.out.println(igor.toString()+raseCar[1].getMarks()+" и будет участвовать в 2 заезде.");
         System.out.println(ivan.toString()+raseBus[1].getMarks()+" и будет участвовать в 3 заезде.");
+        System.out.println("Задание Enum");
+        raseCar[2].printType();
+        raseTrucks[3].printtypeMachine();
+        raseBus[1].printtypeMachine();
 
 
     }
