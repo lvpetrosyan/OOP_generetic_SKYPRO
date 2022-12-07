@@ -1,3 +1,5 @@
+package AVTO;
+
 public enum Capacity {
     VERYSMALL(0,10),
     SMALL(0,25),

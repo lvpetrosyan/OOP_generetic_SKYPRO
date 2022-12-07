@@ -1,3 +1,5 @@
+package AVTO;
+
 import java.util.Objects;
 
 public class DriverD < D extends Bus & Competing>{

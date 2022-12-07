@@ -1,3 +1,5 @@
+package AVTO;
+
 import java.util.Arrays;
 
 public class Car extends Transport implements Competing {
@@ -86,5 +88,9 @@ public class Car extends Transport implements Competing {
     public void printType () {System.out.println(
         "Тип кузова " +
                 getMarks() + " "+getTypeBody());
+    }
+    public static boolean goDiagnostic(){
+        return Math.random()>0.6;
+
     }
 }

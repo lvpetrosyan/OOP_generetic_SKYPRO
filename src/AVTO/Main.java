@@ -1,3 +1,7 @@
+package AVTO;
+
+import AVTO.*;
+
 public class Main {
     public static void main(String[] args) {
         Car[] raseCar = {
@@ -14,7 +18,7 @@ public class Main {
 
         Trucks[] raseTrucks = {
                 new Trucks("Mercedes-Benz", "daa455", 12, 6.3, 2.8, 189, WeightCargo.N2),
-                new Trucks("КАМАЗ", "O405",WeightCargo.N2),
+                new Trucks("КАМАЗ", "O405", WeightCargo.N2),
                 new Trucks("ГАЗ", "3307", 11.8, 8.8, 1.2, 199, WeightCargo.N2),
                 new Trucks("Ford", "ff566", 12.3, 7.8, 2, 177, WeightCargo.N2)};
 
@@ -58,8 +62,30 @@ public class Main {
         raseCar[2].printType();
         raseTrucks[3].printtypeMachine();
         raseBus[1].printtypeMachine();
+        service2(raseCar);
+        raseCar[2].printtypeMachine();
 
 
+    }
+    public static void service (Car[] raseCar){
+        for (Car i : raseCar) {
+            if (!i.goDiagnostic()) {
+                throw new RuntimeException("не прошел диагностику");
+            }
+
+        }
+    }
+    public static void service2 (Car[] raseCar){
+        for (Car i : raseCar) {
+            if (!i.goDiagnostic()) {
+                try {
+                throw new RuntimeException("не прошел диагностику");}
+                catch (RuntimeException e){
+                    System.out.println(e.getMessage());
+                }
+            }
+
+        }
     }
 
     public static void bestTime(Car[] raseCar) {

@@ -1,3 +1,5 @@
+package AVTO;
+
 import java.util.Objects;
 
 public class Driver < B extends Car & Competing> {
