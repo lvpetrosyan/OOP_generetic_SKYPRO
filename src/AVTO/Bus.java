@@ -6,6 +6,7 @@ public class Bus extends Transport implements Competing {
     private static int counter = 1;
     private int id;
 
+
     public Bus(String marks, String model, double engineVolume, double startTime, double endTime, int maxSpeed, Capacity capacity) {
         super(marks, model, engineVolume, startTime, endTime);
         if (maxSpeed <= 0) {

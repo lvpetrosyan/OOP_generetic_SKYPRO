@@ -1,5 +1,8 @@
 package AVTO;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public abstract class Transport {
@@ -8,7 +11,18 @@ public abstract class Transport {
     private double engineVolume;
     private double startTime;
     private double endTime;
+    private ArrayList<Transport> allParticipant=new ArrayList<>();
+    private List<Driver<?>> allDrivers=new ArrayList<>();
+    private List<Sponsor> allSponsors=new ArrayList<>();
+    private List<Mehanics<?>> allMechanic= new ArrayList<>();
 
+    public List<Sponsor> getAllSponsors() {
+        return allSponsors;
+    }
+
+    public List<Mehanics<?>> getAllMechanic() {
+        return allMechanic;
+    }
 
     public Transport(String marks, String model, double engineVolume, double startTime, double endTime) {
         if (marks == null || marks.isEmpty() || marks.isBlank()) {
@@ -36,10 +50,27 @@ public abstract class Transport {
         } else {
             this.endTime = endTime;
         }
-
     }
     public Transport(String marks, String model){
         this(marks,model,1.5,1,4);
+    }
+
+    public ArrayList<Transport> getAllParticipant() {
+        return allParticipant;
+    }
+    public List<Driver<?>> getAllDrivers() {
+        return allDrivers;
+    }
+
+    public void addAllSponsors(Sponsor...allSponsors) {
+        this.allSponsors.addAll(Arrays.asList(allSponsors));
+
+    }
+    public void addAllDrivers (Driver<?> allDrivers){
+        this.allDrivers.addAll(Arrays.asList(allDrivers));
+    }
+    public void addAllMechnics(Mehanics<?> allMechanic){
+        this.allMechanic.addAll(Arrays.asList(allMechanic));
     }
 
     public double getStartTime() {
@@ -105,8 +136,6 @@ public abstract class Transport {
     public int hashCode() {
         return Objects.hash(marks, model, engineVolume);
     }
-
-
 }
 
 

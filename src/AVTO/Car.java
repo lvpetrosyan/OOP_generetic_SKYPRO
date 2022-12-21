@@ -10,6 +10,7 @@ public class Car extends Transport implements Competing {
 
     private final TypeBody typeBody;
 
+
     public Car(String marks, String model, double engineVolume, double startTime, double endTime, int maxSpeed, TypeBody typeBody ) {
         super(marks, model, engineVolume, startTime, endTime);
         if (maxSpeed <= 0) {

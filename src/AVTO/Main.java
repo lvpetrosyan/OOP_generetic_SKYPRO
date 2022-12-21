@@ -2,8 +2,47 @@ package AVTO;
 
 import AVTO.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
+
     public static void main(String[] args) {
+        Car car1= new Car("lada","99",Car.TypeBody.СЕДАН);
+        Car car2= new Car("lada","09",Car.TypeBody.СЕДАН);
+        Car car3= new Car("lada","10",Car.TypeBody.СЕДАН);
+        Bus bus1= new Bus("Hyunday","ajd555",Capacity.SMALL);
+        Bus bus2= new Bus("Hyunday","777",Capacity.SMALL);
+        Bus bus3= new Bus("Hyunday","ad8108",Capacity.SMALL);
+        Trucks trucks1= new Trucks("GAZ","a345", WeightCargo.N2);
+        Trucks trucks2= new Trucks("GAZ","sd897", WeightCargo.N2);
+        Trucks trucks3= new Trucks("GAZ","yu908", WeightCargo.N2);
+        Driver<Car> alex = new Driver<>("Alex", true, 10);
+        DriverC<Trucks> igor = new DriverC<>("Igor",true,15);
+        DriverD<Bus> ivan = new DriverD<>("Ivan",true,7);
+        Mehanics mehanics1= new Mehanics<Car>("Stepan","Stepanovich","Turbo");
+        Mehanics mehanics2= new Mehanics<Bus>("Vladimir","Stepanovich","Sport");
+        Mehanics mehanics3= new Mehanics<Trucks>("Petr","Pavlovich","Live");
+        Sponsor sponsor1= new Sponsor("Geka",150000);
+        Sponsor sponsor2= new Sponsor("CTC",15000000);
+        List<Transport> transports = List.of(car1, car2, bus3);
+
+        car1.addAllDrivers(alex);
+        car1.addAllSponsors(sponsor1,sponsor2);
+        car1.addAllMechnics(mehanics1);
+        for (Transport transport : transports){
+            printInfo(transport);
+        }
+
+        TechStantion techStantion= new TechStantion();
+        techStantion.addTechStation(car3);
+        techStantion.addTechStation(car2);
+        techStantion.addTechStation(trucks1);
+        System.out.println(techStantion);
+        techStantion.goTechInspection();
+        System.out.println(techStantion);
+
+
         Car[] raseCar = {
                 new Car("Toyota", "mark II", 1.8, 5.4, 2, 270, Car.TypeBody.СЕДАН),
                 new Car("BMW", "x5", 1.5, 5.2, 1.02, 250, Car.TypeBody.ВНЕДОРОЖНИК),
@@ -51,9 +90,7 @@ public class Main {
         raseBus[1].goStart();
         raseBus[1].goEnd();
         raseBus[1].pitStop();
-        Driver<Car> alex = new Driver<>("Alex", true, 10);
-        DriverC<Trucks> igor = new DriverC<>("Igor",true,15);
-        DriverD<Bus> ivan = new DriverD<>("Ivan",true,7);
+
 
         System.out.println("\n Водители: \n "+alex.toString()+raseBus[1].getMarks()+" и будет участвовать в 1 заезде.");
         System.out.println(igor.toString()+raseCar[1].getMarks()+" и будет участвовать в 2 заезде.");
@@ -67,6 +104,21 @@ public class Main {
 
 
     }
+    public static void  printInfo(Transport transport) {
+        System.out.println("Машины : " + transport.getModel());
+        System.out.println("Водители : "+ transport.getAllDrivers());//вар1
+        System.out.println("Мехиники : ");
+            for (Mehanics <?> mehanics : transport.getAllMechanic()) {//вар2
+                System.out.println(mehanics.getName());
+            }
+            System.out.println("Спонсоры: ");
+        for (Sponsor sponsor : transport.getAllSponsors() ) {
+            System.out.println(sponsor.getName());
+
+        }
+
+    }
+
     public static void service (Car[] raseCar){
         for (Car i : raseCar) {
             if (!i.goDiagnostic()) {
