@@ -3,6 +3,8 @@ package AVTO;
 import AVTO.Competing;
 import AVTO.Transport;
 
+import java.util.Objects;
+
 public class Trucks extends Transport implements Competing {
     private WeightCargo weightCargo;
 
@@ -98,5 +100,19 @@ public class Trucks extends Transport implements Competing {
                 ". Модель - " + getModel() +
                 " объем двигателя " + getEngineVolume() +
                 ". Проехал весь маршурт за " + getEndTime();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Trucks trucks = (Trucks) o;
+        return maxSpeed == trucks.maxSpeed && id == trucks.id && weightCargo == trucks.weightCargo;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), weightCargo, maxSpeed, id);
     }
 }

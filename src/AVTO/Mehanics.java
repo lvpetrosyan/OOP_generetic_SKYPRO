@@ -1,10 +1,9 @@
 package AVTO;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Mehanics <T extends Transport> {
+
     private String name;
     private String lastName;
     private String company;
@@ -33,6 +32,7 @@ public class Mehanics <T extends Transport> {
     public void repair(){
         System.out.println("Чинить машину");
     }
+
 
 
 

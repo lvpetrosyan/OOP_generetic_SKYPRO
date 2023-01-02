@@ -1,6 +1,7 @@
 package AVTO;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Car extends Transport implements Competing {
     public enum TypeBody {СЕДАН, ХЭТЧБЭК,КУПЕ, УНИВЕРСАЛ, ВНЕДОРОЖНИК, КРОССОВЕР, ПИКАП, ФУРГОН, МИНИВЭН}
@@ -93,5 +94,19 @@ public class Car extends Transport implements Competing {
     public static boolean goDiagnostic(){
         return Math.random()>0.6;
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Car car = (Car) o;
+        return maxSpeed == car.maxSpeed && id == car.id && typeBody == car.typeBody;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), maxSpeed, id, typeBody);
     }
 }

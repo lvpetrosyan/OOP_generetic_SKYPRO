@@ -1,5 +1,7 @@
 package AVTO;
 
+import java.util.Objects;
+
 public class Bus extends Transport implements Competing {
     private Capacity capacity;
     private int maxSpeed;
@@ -96,4 +98,17 @@ public class Bus extends Transport implements Competing {
                 ". Проехал весь маршурт за " + getEndTime() + " вместимость ";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Bus bus = (Bus) o;
+        return maxSpeed == bus.maxSpeed && id == bus.id && capacity == bus.capacity;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), capacity, maxSpeed, id);
+    }
 }
