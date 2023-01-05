@@ -38,7 +38,7 @@ public class TestProduct {
         addProductInRecept(tomato, salat1Product);
         addProductInRecept(cucumber, salat1Product);
         Set<Product> salat2Product = new HashSet<>();
-        Recipe salat2 = new Recipe("Салат осенний", salat2Product);
+        Recipe salat2 = new Recipe("Салат нний", salat2Product);
         addProductInRecept(olives, salat2Product);
         addProductInRecept(cheese, salat2Product);
         Set<Product> salat3Product = new HashSet<>();
@@ -67,7 +67,7 @@ public class TestProduct {
         if (listRecipt.contains(product)) {
             throw new ProductException("Продукт уже есть в списке- ", product.getName());
         }
-        if (correctName(product)) {
+        if (!correctName(product)) {
             throw new ProductException("Введите корректное название! ", product.getName());
         } else {
             listRecipt.add(product);

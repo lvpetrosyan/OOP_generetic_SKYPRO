@@ -1,16 +1,13 @@
 package AVTO;
 
-import AVTO.*;
-
-import java.io.LineNumberReader;
 import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
         Car car1= new Car("lada","99",Car.TypeBody.СЕДАН);
-        Car car2= new Car("lada","09",Car.TypeBody.СЕДАН);
-        Car car3= new Car("lada","10",Car.TypeBody.СЕДАН);
+        Car car2= new Car("Hyunday","09",Car.TypeBody.СЕДАН);
+        Car car3= new Car("Порше","10",Car.TypeBody.СЕДАН);
 
         Bus bus1= new Bus("Hyunday","ajd555",Capacity.SMALL);
         Bus bus2= new Bus("Hyunday","777",Capacity.SMALL);
@@ -41,6 +38,10 @@ public class Main {
         drivers.add(alex);
         drivers.add(igor);
         drivers.add(ivan);
+        for (Driver driver : drivers) {
+            System.out.println("Водитель: "+driver.getName());
+
+        }
 
 
         Mehanics mehanics1= new Mehanics<Car>("Stepan","Stepanovich","Turbo");
@@ -53,11 +54,12 @@ public class Main {
 
         Map<Car, Set <Mehanics>>  mehanicsSetMap= new HashMap<>();
 
-        mehanicsSetMap.put(car1,(Set<Mehanics>) mehanics1);
-        mehanicsSetMap.put(car2, (Set<Mehanics>) mehanics2);
-        mehanicsSetMap.put(car3,(Set<Mehanics>) mehanics3);
+        mehanicsSetMap.put(car1,mehanics);
+        mehanicsSetMap.put(car2, mehanics);
+        mehanicsSetMap.put(car3,mehanics);
+       System.out.println( printINFO2(mehanicsSetMap));
 
-        printINFO2(mehanicsSetMap);
+
 
 
         Sponsor sponsor1= new Sponsor("Geka",150000);
@@ -131,20 +133,20 @@ public class Main {
 
 
     }
-    public static void printINFO2(Map<Car, Set <Mehanics>>  mehanicsSetMap){
+    public static String printINFO2(Map<Car, Set <Mehanics>>  mehanicsSetMap){
         StringBuilder builder= new StringBuilder();
         for (Map.Entry<Car, Set<Mehanics>> entry : mehanicsSetMap.entrySet()) {
-           System.out.println( builder.append(entry.getKey().getMarks()));
-            for (Mehanics <Car> car : entry.getValue()) {
-                System.out.println(builder.append(car.getName()));
+            builder.append(entry.getKey().getMarks()).append("!\nМеханики машины:\n");
+            for (Mehanics mehan : entry.getValue()) {
+                builder.append(mehan.getName()).append("\n");
 
             }
-
-
         }
-
-
+        return builder.toString();
     }
+
+
+
     public static void  printInfo(Transport transport) {
         System.out.println("Машины : " + transport.getModel());
         System.out.println("Водители : "+ transport.getAllDrivers());//вар1
